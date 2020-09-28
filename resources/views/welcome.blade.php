@@ -28,7 +28,7 @@
                     <a class="nav-link" href="/blog">Blog </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact </a>
+                    <a class="nav-link" href="#contact">Contact </a>
                 </li>
             </ul>
             <a style="color: rgba(0,0,0,.5)" class="nav-link" href="/login">Login </a>
@@ -77,6 +77,33 @@
             of incubating they go to Nora's basement to fruit
             and to be harvested.</p>
     </div>
+</div>
+
+<div id="contact" class="contact text-center">
+    <h1 class="container-heading">Contact Me!</h1>
+    <form method="POST" action="">
+        <div class="input-group mb-3 email">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">E-Mail</span>
+            </div>
+            <input type="text" class="form-control" name="email" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+        <br>
+        <div class="input-group mb-3 subject">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">Subject</span>
+            </div>
+            <input type="text" class="form-control" name="email" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+        <br>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Message</span>
+            </div>
+            <textarea class="form-control" aria-label="With textarea" rows="10"></textarea>
+        </div>
+
+    </form>
 </div>
 
 <!-- Footer -->

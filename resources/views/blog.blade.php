@@ -28,7 +28,7 @@
                     <a class="nav-link" href="/blog">Blog </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact </a>
+                    <a class="nav-link" href="/#contact">Contact </a>
                 </li>
             </ul>
             <a style="color: rgba(0,0,0,.5)" class="nav-link" href="/login">Login </a>
