@@ -79,35 +79,39 @@
     </div>
 </div>
 
-<div id="contact" class="contact text-center">
-    <h1 class="container-heading">Contact Me!</h1>
-    <form method="POST" action="">
-        <div class="input-group mb-3 email">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">E-Mail</span>
+<div id="contact" class="container">
+    <img class="coffee" src="/img/coffee.png">
+    <div class="container-paragraph contact-form">
+        <h1 class="text-center mb-3">Contact Me!</h1>
+        <form method="POST" action="">
+            <div class="input-group mb-3 email">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">E-Mail</span>
+                </div>
+                <input type="text" class="form-control" name="email" aria-label="Default" aria-describedby="inputGroup-sizing-default">
             </div>
-            <input type="text" class="form-control" name="email" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-        </div>
-        <br>
-        <div class="input-group mb-3 subject">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">Subject</span>
+            <br>
+            <div class="input-group mb-3 subject">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Subject</span>
+                </div>
+                <input type="text" class="form-control" name="email" aria-label="Default" aria-describedby="inputGroup-sizing-default">
             </div>
-            <input type="text" class="form-control" name="email" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-        </div>
-        <br>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Message</span>
+            <br>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Message</span>
+                </div>
+                <textarea class="form-control" aria-label="With textarea" rows="10"></textarea>
             </div>
-            <textarea class="form-control" aria-label="With textarea" rows="10"></textarea>
-        </div>
 
-    </form>
+        </form>
+    </div>
+
 </div>
 
 <!-- Footer -->
-<footer style="background-color: rgba(0,0,0,0.5) !important; margin-top: 50px; color: white;" class="page-footer font-small pt-4">
+<footer style="background-color: rgba(0,0,0,0.5) !important; margin-top: 10%; color: white;" class="page-footer font-small pt-4">
 
     <!-- Footer Links -->
     <div class="container-fluid text-center text-md-left">

@@ -43,7 +43,7 @@ body, html {
 .container {
     padding: 20px 40px 40px;
     max-width: 70%;
-    margin-top: 5%;
+    margin-top: 10%;
 }
 
 .container-image-left {
@@ -81,19 +81,16 @@ body, html {
     font-size: 1.4em;
 }
 
-#contact {
-    margin: 5% 20%;
+.contact-form {
+    display: inline-block;
+    float: right;
+    width: 60%;
 }
-
-.email {
-    padding: 0 30%;
+.coffee {
+    display: inline-block;
+    vertical-align: top;
+    height: 400px;
 }
-
-.subject {
-    padding: 0 20%;
-}
-
-
 /* /INDEX */
 
 /* PRODUCTS */
