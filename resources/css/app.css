@@ -1,0 +1,194 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+/* INDEX */
+#nav-opacity {
+    background-color: rgba(200,200,200,0.1) !important;
+
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+/* The hero image */
+.hero-image {
+    /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/img/header.jpg");
+
+    /* Set a specific height */
+    height: 60%;
+
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    font-size: 1.3em;
+}
+
+/* Place text in the middle of the image */
+.hero-text {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.container {
+    padding: 20px 40px 40px;
+    max-width: 70%;
+    margin-top: 5%;
+}
+
+.container-image-left {
+    display: inline-block;
+    vertical-align: top;
+    height: 400px;
+    box-shadow: 0 20px 36px -28px rgba(0,0,0,0.75);
+}
+
+.container-image-right {
+     display: inline-block;
+     float: right;
+     vertical-align: top;
+     height: 400px;
+     box-shadow: 0 20px 36px -28px rgba(0,0,0,0.75);
+ }
+
+.container-text-left {
+    display: inline-block;
+    width: 46%;
+}
+
+.container-text-right {
+    padding-left: 50px;
+     display: inline-block;
+     width: 46%;
+}
+
+.container-heading {
+    font-size: 2em;
+    padding-bottom: 20px;
+}
+
+.container-paragraph {
+    font-size: 1.4em;
+}
+/* /INDEX */
+
+/* PRODUCTS */
+.card-deck {
+    padding-top: 100px;
+    padding-bottom: 35px;
+    margin: 15px;
+}
+
+.card-title {
+    font-size: 1.3em;
+}
+
+.hp {
+    background-color: grey;
+    border: 2px solid #f7d10a;
+}
+
+.harvesting-info{
+    margin: 20px;
+}
+
+.harvesting-header {
+    font-size: 2em;
+    color: #f7d10a;
+    padding-bottom: 20px;
+}
+
+.mushroom-type {
+    font-size: 1.4em;
+}
+
+.harvesting-period {
+    font-size: 1.2em;
+    padding-bottom: 15px;
+}
+
+.harvesting {
+    border-color: #f7d10a;
+    padding-bottom: 15px;
+}
+
+/* /PRODUCTS */
+
+/* PRODUCT DETAILS */
+
+.pd-con {
+    margin: 5%;
+}
+
+.pd-image {
+    display: inline-block;
+    vertical-align: top;
+    height: 55vh;
+    max-width: 50%;
+    box-shadow: 0 20px 36px -28px rgba(0,0,0,0.75);
+}
+
+.pd-text {
+    display: inline-block;
+    width: 46%;
+    margin-left: 40px;
+}
+
+.pd-title {
+    font-size: 2em;
+    padding-bottom: 5px;
+}
+
+.pd-subtitle {
+    font-size: 1.4em;
+    padding-bottom: 25px;
+}
+
+.pd-paragraph {
+    font-size: 1.2em;
+    padding-bottom: 20px;
+}
+
+.pd-price {
+    font-size: 1.6em;
+    padding-bottom: 30px;
+}
+
+.pd-form {
+    display: inline-block;
+    padding-bottom: 20px;
+}
+
+.unit {
+    display: inline-block;
+    padding-right: 50px;
+}
+
+/* /PRODUCT DETAILS */
+
+/* BLOG */
+
+.card {
+    margin: 5%;
+}
+
+.blog-image-container {
+    max-height: 25vh;
+    overflow: hidden;
+}
+
+.blog-image {
+    width: 100%;
+}
+
+/* /BLOG */
