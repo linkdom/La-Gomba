@@ -8,7 +8,19 @@
     background-color: rgba(200,200,200,0.1) !important;
 
 }
+.nav-link:hover {
+    color: rgb(0,0,0);
+}
 
+#register {
+    color: #f7d10a !important;
+    border-color: #f7d10a !important;
+}
+
+#register:hover {
+    background-color: #f7d10a !important;
+    color: rgba(0,0,0,.5) !important;
+}
 body, html {
     height: 100%;
     font-family: 'Open Sans', sans-serif !important;

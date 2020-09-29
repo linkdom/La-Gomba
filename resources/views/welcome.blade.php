@@ -13,29 +13,7 @@
 </head>
 <body>
 <div class="hero-image">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="nav-opacity">
-        <a class="navbar-brand" href="/"><img style="height: 60px" src="/img/LaGomba_logo_transparent_bg.png" alt=""></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/products">Products </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/blog">Blog </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact </a>
-                </li>
-            </ul>
-            <a style="color: rgba(0,0,0,.5)" class="nav-link" href="/login">Login </a>
-            <a style="color: #f7d10a;border-color: #f7d10a" href="/register" class="btn btn-outline-success my-2 my-sm-0">Join us!</a>
-
-        </div>
-    </nav>
+@include('inc.navbar')
 </div>
 <div class="container">
     <img class="container-image-right" src="/img/nora.png">
@@ -109,33 +87,7 @@
     </div>
 
 </div>
-
-<!-- Footer -->
-<footer style="background-color: rgba(0,0,0,0.5) !important; margin-top: 10%; color: white;" class="page-footer font-small pt-4">
-
-    <!-- Footer Links -->
-    <div class="container-fluid text-center text-md-left">
-
-        <div class="text-center">
-            <!-- Content -->
-            <p>
-                Markhofgasse 19
-                <br>
-                1030 Wien
-                <br>
-                rr.noar@gmail.com
-            </p>
-        </div>
-
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">
-        © 2020 Copyright: LaGomba
-    </div>
-    <!-- Copyright -->
-
-</footer>
-<!-- Footer -->
-
+@include('inc.footer')
 
 <!-- SCRIPTS -->
 <script type="text/javascript" src="/js/app.js"></script>

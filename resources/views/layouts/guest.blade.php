@@ -18,29 +18,7 @@
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.2.1/dist/alpine.js" defer></script>
     </head>
     <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="auth-nav">
-        <a class="navbar-brand" href="/"><img style="height: 60px" src="/img/LaGomba_logo_transparent_bg.png" alt=""></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/products">Products </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/blog">Blog </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/#contact">Contact </a>
-                </li>
-            </ul>
-            <a class="nav-link active" href="/login">Login <span class="sr-only">(current)</span></a>
-            <a style="color: #f7d10a;border-color: #f7d10a" href="/register" class="btn btn-outline-success my-2 my-sm-0">Join us!</a>
-
-        </div>
-    </nav>
+@include('inc.navbar-auth')
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
