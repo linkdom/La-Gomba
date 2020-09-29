@@ -11,4 +11,11 @@ class HarvestingPeriod extends Model
 
     protected $fillable = ['from', 'to', 'product_id'];
 
+    /**
+     * Get the product associated with the harvesting period.
+     */
+    public function product()
+    {
+        return $this->belongsTo('App\Models\Product');
+    }
 }

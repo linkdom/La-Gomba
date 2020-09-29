@@ -17,12 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/products', function () {
-    return view('products');
-});
+Route::get('/products', 'App\Http\Controllers\ProductController@index');
 
-Route::get('/mushroom-details', 'App\Http\Controllers\OrderController@index');
-
+Route::get('/mushroom-details/{id}', 'App\Http\Controllers\ProductController@detail');
 Route::post('/mushroom-details', 'App\Http\Controllers\OrderController@addToCart');
 
 Route::get('/blog', 'App\Http\Controllers\BlogController@index');

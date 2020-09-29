@@ -17,46 +17,33 @@
 </div>
 
 <div class="card-deck">
-    <div class="card">
-        <img class="card-img-top" src="/img/oysterQA.jpeg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Oyster mushrooms</h5>
-            <p class="card-text">Quality A</p>
-            <p class="card-text">19€</p>
-        </div>
-        <div class="card-footer text-center">
-            <a href="/mushroom-details"><p class="card-text">View Product</p></a>
-        </div>
-    </div>
-    <div class="card">
-        <img class="card-img-top" src="/img/oysterQB.jpeg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Oyster mushrooms</h5>
-            <p class="card-text">Quality B</p>
-            <p class="card-text">16€</p>
-        </div>
-        <div class="card-footer text-center">
-            <a href="/mushroom-details"><p class="card-text">View Product</p></a>
-        </div>
-    </div>
     <div class="card hp">
         <div class="harvesting-info">
             <h1 class="harvesting-header">Upcoming Harvesting Periods:</h1>
-            <p class="mushroom-type">Mushroom type</p>
-            <p class="harvesting-period">from harvesting to period</p>
-            <hr class="harvesting">
-            <p class="mushroom-type">Mushroom type</p>
-            <p class="harvesting-period">from harvesting to period</p>
-            <hr class="harvesting">
-            <p class="mushroom-type">Mushroom type</p>
-            <p class="harvesting-period">from harvesting to period</p>
-            <hr class="harvesting">
-            <p class="mushroom-type">Mushroom type</p>
-            <p class="harvesting-period">from harvesting to period</p>
-            <hr class="harvesting">
+            @foreach($harvestingPeriods as $hp)
+                @if($hp->to > $today)
+                    <p class="mushroom-type">{{$hp->product->title}}</p>
+                    <p class="harvesting-period">from {{$hp->from}} to {{$hp->to}}</p>
+                    <hr class="harvesting">
+                @endif
+            @endforeach
         </div>
-
     </div>
+
+    @foreach($products as $product)
+        <div class="card">
+            <img class="card-img-top" src="{{$product->image}}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{$product->title}}</h5>
+                <p class="card-text">{{$product->subtitle}}</p>
+                <br>
+                <p class="card-text"><b>{{$product->price}}€ per kg</b></p>
+            </div>
+            <div class="card-footer text-center">
+                <a href="/mushroom-details/{{$product->id}}"><p class="card-text">View Product</p></a>
+            </div>
+        </div>
+    @endforeach
 </div>
 
 @include('inc.footer')

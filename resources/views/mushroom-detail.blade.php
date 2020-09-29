@@ -19,24 +19,24 @@
 <div class="pd-con">
     <img class="pd-image" src="/img/oysterQB.jpeg">
     <div class="pd-text">
-        <h1 class="pd-title">Oyster Mushroom</h1>
-        <h2 class="pd-subtitle">Quality A</h2>
-        <p class="pd-paragraph">Oyster mushrooms are a type of edible fungi.
-            They are one of the most widely consumed mushrooms in the world.
-            They get their name from their oyster-shaped cap and very short (or completely absent) stem.
-            When cooked, oyster mushrooms have a smooth oyster-like texture and a some say a slight hint of seafood flavor.
-            This may also contribute to their name.
-            <br>
-        </p>
-        <h2 class="pd-price">20€ per kg</h2>
+        <h1 class="pd-title">{{$product->title}}</h1>
+        <h2 class="pd-subtitle">{{$product->subtitle}}</h2>
+        <p class="pd-paragraph">{{$product->description}}</p>
+        <br>
+        <h2 class="pd-price">{{$product->price}} per kg</h2>
         <form class="pd-form" method="POST" action="{{ action('App\Http\Controllers\OrderController@addToCart') }}">
-            <input  style="width: 50px" class="p-1" type="number" name="quantity" id="quantity" value="1" min="1" max="6" placeholder="Quantity" required="">
+            <input  style="width: 50px" class="p-1" type="number" name="quantity" id="quantity" value="1" min="1" max="{{$stockAmount}}" placeholder="Quantity" required="">
             <h1 class="unit">Kg</h1>
-            <button class="btn btn-success" type="submit">Add To Cart</button>
+            @if($stockAmount < 1)
+                <button disabled class="btn btn-success" type="submit">Out Of Stock</button>
+            @else
+                <button class="btn btn-success" type="submit">Add To Cart</button>
+            @endif
         </form>
-        <p style="padding-bottom: 8px">Currently in Stock: 8kg</p>
-        <h2>Next Harvesting Period: from Harvesting to Period</h2>
-
+        <p style="padding-bottom: 8px">Currently in Stock: {{$stockAmount}}kg</p>
+        @if($harvestingPeriod !== null)
+            <h2>Next Harvesting Period: from {{$harvestingPeriod->from}} to {{$harvestingPeriod->to}}</h2>
+        @endif
         <div class="alert alert-danger my-4 mx-auto">ATTENTION! Delivery is only possible within the Vienna city zone!</div>
     </div>
 

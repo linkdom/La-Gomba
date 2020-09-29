@@ -11,5 +11,19 @@ class Product extends Model
 
     protected $fillable = ['title', 'subtitle', 'description', 'price', 'image'];
 
+    /**
+     * Get the harvesting period associated with the product.
+     */
+    public function harvestingPeriod()
+    {
+        return $this->hasOne('App\Models\HarvestingPeriod');
+    }
 
+    /**
+     * Get the stock amount associated with the product.
+     */
+    public function stockAmount()
+    {
+        return $this->hasOne('App\Models\Stock');
+    }
 }
