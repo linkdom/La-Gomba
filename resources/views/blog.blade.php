@@ -10,45 +10,28 @@
     <!-- CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div class="hero-image">
     @include('inc.navbar')
 </div>
-<div class="card-group">
-    <div class="card">
-        <div class="blog-image-container">
-            <img class="card-img-top blog-image" src="/img/basement.png" alt="Card image cap">
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">The Basement is Growing</h5>
-            <p class="card-text pb-2">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text pb-4"><small class="text-muted">Last updated 3 mins ago</small></p>
-            <a class="btn btn-info" href="/post/{id}">Read More</a>
-        </div>
-    </div>
-    <div class="card">
-        <div class="blog-image-container">
-            <img class="card-img-top blog-image" src="/img/throwback.png" alt="Card image cap">
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Throwback Thursday</h5>
-            <p class="card-text pb-2">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text pb-4"><small class="text-muted">Last updated 3 mins ago</small></p>
-            <a class="btn btn-info" href="/post/{id}">Read More</a>
+<div class="row mt-10">
+    @foreach($posts as $post)
+    <div class="col-md-3">
+        <div class="card">
+            <div class="blog-image-container">
+                <img class="card-img-top blog-image" src="{{$post->image}}" alt="Card image cap">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{$post->title}}</h5>
+                <p class="card-text pb-2">{{$post->subtitle}}</p>
+                <p class="card-text pb-4"><small class="text-muted">Last updated: {{$post->created_at}}</small></p>
+                <a class="btn btn-info" href="/post/{{$post->id}}">Read More</a>
+            </div>
         </div>
     </div>
-    <div class="card">
-        <div class="blog-image-container">
-            <img class="card-img-top blog-image" src="/img/growing.png" alt="Card image cap">
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Oh look at these beauts</h5>
-            <p class="card-text pb-2">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text pb-4"><small class="text-muted">Last updated 3 mins ago</small></p>
-            <a class="btn btn-info" href="/post/{id}">Read More</a>
-        </div>
-    </div>
+    @endforeach
 </div>
 
 @include('inc.footer')

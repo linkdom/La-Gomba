@@ -18,11 +18,17 @@ Route::get('/', function () {
 });
 
 Route::get('/products', 'App\Http\Controllers\ProductController@index');
-
 Route::get('/mushroom-details/{id}', 'App\Http\Controllers\ProductController@detail');
-Route::post('/mushroom-details', 'App\Http\Controllers\OrderController@addToCart');
+
+Route::get('/add-to-cart/{id}', [
+        'uses' => 'App\Http\Controllers\ProductController@getAddToCart',
+        'as' => 'product.addToCart'
+    ]);
 
 Route::get('/blog', 'App\Http\Controllers\BlogController@index');
+Route::get('/post/{id}', 'App\Http\Controllers\BlogController@details');
+
+Route::get('/shopping-cart', 'App\Http\Controllers\ProductController@getCart');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

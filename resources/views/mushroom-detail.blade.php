@@ -10,6 +10,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div class="hero-image">
@@ -17,14 +18,14 @@
 </div>
 
 <div class="pd-con">
-    <img class="pd-image" src="/img/oysterQB.jpeg">
+    <img class="pd-image" src="{{$product->image}}">
     <div class="pd-text">
         <h1 class="pd-title">{{$product->title}}</h1>
         <h2 class="pd-subtitle">{{$product->subtitle}}</h2>
         <p class="pd-paragraph">{{$product->description}}</p>
         <br>
         <h2 class="pd-price">{{$product->price}} per kg</h2>
-        <form class="pd-form" method="POST" action="{{ action('App\Http\Controllers\OrderController@addToCart') }}">
+        <form class="pd-form" method="" action="{{ route('product.addToCart', ['id' => $product->id]) }}">
             <input  style="width: 50px" class="p-1" type="number" name="quantity" id="quantity" value="1" min="1" max="{{$stockAmount}}" placeholder="Quantity" required="">
             <h1 class="unit">Kg</h1>
             @if($stockAmount < 1)

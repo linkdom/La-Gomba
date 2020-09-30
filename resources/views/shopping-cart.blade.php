@@ -15,37 +15,48 @@
 <body>
 <div class="hero-image">
 @include('inc.navbar')
-</div>
 
-<div class="card-deck">
-    <div class="card hp">
-        <div class="harvesting-info">
-            <h1 class="harvesting-header">Upcoming Harvesting Periods:</h1>
-            @foreach($harvestingPeriods as $hp)
-                @if($hp->to > $today)
-                    <p class="mushroom-type">{{$hp->product->title}}</p>
-                    <p class="harvesting-period">from {{$hp->from}} to {{$hp->to}}</p>
-                    <hr class="harvesting">
-                @endif
-            @endforeach
+</div>
+@if(Session::has('cart'))
+    <div style="margin-top: 5%; margin-left: 35%" class="row checkout-list">
+        <div class="col-md-6">
+            <ul class="list-group">
+                @foreach($products as $product)
+                    <li class="list-group-item">
+                        <strong>{{ $product['qty'] }}</strong>
+                        <strong>{{ $product['item']['title'] }}</strong>
+                        <br>
+                        <span class="pl-3">{{ $product['item']['subtitle'] }}</span>
+                        <span class="label label-success pl-10">{{ $product['price'] }}€</span>
+
+                        <div style="float: right; font-size: 20px; margin-top: -15px" class="btn-group">
+                            <a href=""><i style="color: grey" class="fa fa-minus-circle pr-1" aria-hidden="true"></i></a>
+                            <a href=""><i style="color: grey" class="fa fa-plus-circle pr-1" aria-hidden="true"></i></a>
+                            <a href=""><i style="color: darkred" class="fa fa-times-circle" aria-hidden="true"></i></a>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+
+    </div>
+    <div style="margin-top: 2%; margin-left: 35%" class="row text-center checkout-list">
+        <div class="col-md-6">
+            <strong>Total: {{ $totalPrice }}€</strong>
+            <hr>
         </div>
     </div>
 
-    @foreach($products as $product)
-        <div class="card">
-            <img class="card-img-top" src="{{$product->image}}" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">{{$product->title}}</h5>
-                <p class="card-text">{{$product->subtitle}}</p>
-                <br>
-                <p class="card-text"><b>{{$product->price}}€ per kg</b></p>
-            </div>
-            <div class="card-footer text-center">
-                <a href="/mushroom-details/{{$product->id}}"><p class="card-text">View Product</p></a>
-            </div>
+    <div style="margin-top: 2%; margin-left: 35%" class="row text-center checkout-list">
+        <div class="col-md-6">
+            <button type="button" class="btn btn-success">Checkout</button>
         </div>
-    @endforeach
-</div>
+    </div>
+@else
+
+@endif
+
+
 
 @include('inc.footer')
 <!-- SCRIPTS -->

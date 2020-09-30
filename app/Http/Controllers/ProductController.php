@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\HarvestingPeriod;
 use App\Models\Product;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Date;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
@@ -41,6 +40,26 @@ class ProductController extends Controller
         }
 
         return view('mushroom-detail')->with(['product' => $product, 'harvestingPeriod' => $harvestingPeriod,  'stockAmount' => $stockAmount]);
+    }
+
+    public function getAddToCart(Request $request, $id) {
+        $product = Product::find($id);
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $product->id);
+
+        $request->session()->put('cart', $cart);
+        return redirect()->back();
+
+    }
+
+    public function getCart() {
+        if (!Session::has('cart')) {
+            return view('shopping-cart');
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        return view('shopping-cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
 
     /**

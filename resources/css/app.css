@@ -242,3 +242,52 @@ body, html {
 }
 
 /* /LOGIN */
+
+/* SHOPPING CART */
+
+@media screen and (max-width: 800px) {
+    .checkout-list {
+        margin-left: 0 !important;
+        width: 100%;
+    }
+}
+
+/* /SHOPPING CART */
+
+/* DASHBOARD */
+
+.orders-list {
+    margin-top: 20vh;
+}
+
+#collapsible {
+    display: none;
+    overflow: hidden;
+}
+
+/* /DASHBOARD */
+
+
+/* PAGE FOOTER*/
+
+.page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+.content-wrap {
+    padding-bottom: 175px;    /* Footer height */
+}
+
+.page-footer {
+    background-color: rgba(0,0,0,0.5) !important;
+    color: white;
+    margin-top: 50px;
+    /*position: absolute;
+    width: 100%;
+    bottom: 0;
+    height: 175px;*/
+}
+
+
+/* /PAGE FOOTER */
