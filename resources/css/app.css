@@ -66,12 +66,12 @@ body, html {
 }
 
 .container-image-right {
-     display: inline-block;
-     float: right;
-     vertical-align: top;
-     height: 400px;
-     box-shadow: 0 20px 36px -28px rgba(0,0,0,0.75);
- }
+    display: inline-block;
+    float: right;
+    vertical-align: top;
+    height: 400px;
+    box-shadow: 0 20px 36px -28px rgba(0,0,0,0.75);
+}
 
 .container-text-left {
     display: inline-block;
@@ -80,8 +80,8 @@ body, html {
 
 .container-text-right {
     padding-left: 50px;
-     display: inline-block;
-     width: 46%;
+    display: inline-block;
+    width: 46%;
 }
 
 .container-heading {

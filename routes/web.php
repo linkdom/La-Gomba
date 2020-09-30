@@ -17,18 +17,37 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/products', 'App\Http\Controllers\ProductController@index');
-Route::get('/mushroom-details/{id}', 'App\Http\Controllers\ProductController@detail');
+Route::get('/products', [
+    'uses' => 'App\Http\Controllers\ProductController@index',
+    'as' => 'products'
+]);
+
+Route::get('/mushroom-details/{id}', [
+    'uses' => 'App\Http\Controllers\ProductController@detail',
+    'as' => 'products'
+]);
 
 Route::get('/add-to-cart/{id}', [
         'uses' => 'App\Http\Controllers\ProductController@getAddToCart',
         'as' => 'product.addToCart'
     ]);
 
-Route::get('/blog', 'App\Http\Controllers\BlogController@index');
-Route::get('/post/{id}', 'App\Http\Controllers\BlogController@details');
+Route::get('/blog', [
+    'uses' => 'App\Http\Controllers\BlogController@index',
+    'as' => 'blog'
+]);
 
-Route::get('/shopping-cart', 'App\Http\Controllers\ProductController@getCart');
+Route::get('/post/{id}', [
+    'uses' => 'App\Http\Controllers\BlogController@details',
+    'as' => 'blog'
+]);
+
+Route::get('/shopping-cart', [
+    'uses' => 'App\Http\Controllers\ProductController@getCart',
+    'as' => 'shoppingCart'
+]);
+
+Route::get('/admin', 'App\Http\Controllers\AdminController@index');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

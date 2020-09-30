@@ -22,9 +22,7 @@
 
     @livewire('navigation-dropdown')
 
-    <div class="font-sans text-gray-900 antialiased">
-        {{ $slot }}
-    </div>
+    @yield('content')
 
     <!-- SCRIPTS -->
     <script type="text/javascript" src="/js/app.js"></script>

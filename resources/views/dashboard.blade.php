@@ -5,6 +5,15 @@
         </h2>
     </x-slot>
 
+    @if(auth()->user()->currentTeam->name == 'Admin')
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg orders-list">
+                    <p>Welcome to the Admin Dashboard</p>
+                </div>
+            </div>
+        </div>
+    @else
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg orders-list">
@@ -74,4 +83,5 @@
             </div>
         </div>
     </div>
+    @endif
 </x-app-layout>
