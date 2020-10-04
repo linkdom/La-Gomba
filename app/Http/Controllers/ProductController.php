@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function index()
     {
 
-        $harvestingPeriods = HarvestingPeriod::all();
+        $harvestingPeriods = HarvestingPeriod::all()->sortBy('from');
         $products = Product::all();
         $today = date("Y-m-d");
 

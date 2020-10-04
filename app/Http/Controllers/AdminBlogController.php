@@ -77,7 +77,7 @@ class AdminBlogController extends Controller
 
             $posts = Blog::all();
 
-            return view('admin.blog.index')->with(['posts' => $posts, 'message' => 'Post created successfully.']);
+            return view('admin.blog.index')->with(['posts' => $posts, 'message' => 'Post successfully created.']);
 
         } else {
             abort(404);
@@ -154,7 +154,7 @@ class AdminBlogController extends Controller
 
             $posts = Blog::all();
 
-            return view('admin.blog.index')->with(['posts' => $posts, 'message' => 'Post edited successfully.']);
+            return view('admin.blog.index')->with(['posts' => $posts, 'message' => 'Post successfully edited.']);
         } else {
             abort(404);
         }

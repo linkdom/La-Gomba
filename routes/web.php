@@ -125,6 +125,21 @@ Route::post('/admin/harvesting-periods/store', [
     'as' => 'admin.harvestingPeriods.store'
 ]);
 
+Route::get('/admin/harvesting-periods/edit/{id}', [
+    'uses' => 'App\Http\Controllers\AdminHarvestingPeriodsController@edit',
+    'as' => 'admin.harvestingPeriods.edit'
+]);
+
+Route::post('/admin/harvesting-periods/update/{id}', [
+    'uses' => 'App\Http\Controllers\AdminHarvestingPeriodsController@update',
+    'as' => 'admin.harvestingPeriods.update'
+]);
+
+Route::delete('/admin/harvesting-periods/delete/{id}', [
+    'uses' => 'App\Http\Controllers\AdminHarvestingPeriodsController@destroy',
+    'as' => 'admin.harvestingPeriods.delete'
+]);
+
 // ADMIN STOCK
 Route::get('/admin/stocks', [
     'uses' => 'App\Http\Controllers\AdminStocksController@index',
@@ -139,6 +154,21 @@ Route::get('/admin/stocks/create', [
 Route::post('/admin/stocks/store', [
     'uses' => 'App\Http\Controllers\AdminStocksController@store',
     'as' => 'admin.stocks.store'
+]);
+
+Route::get('/admin/stocks/edit/{id}', [
+    'uses' => 'App\Http\Controllers\AdminStocksController@edit',
+    'as' => 'admin.stocks.edit'
+]);
+
+Route::post('/admin/stocks/update/{id}', [
+    'uses' => 'App\Http\Controllers\AdminStocksController@update',
+    'as' => 'admin.stocks.update'
+]);
+
+Route::delete('/admin/stocks/delete/{id}', [
+    'uses' => 'App\Http\Controllers\AdminStocksController@destroy',
+    'as' => 'admin.stocks.delete'
 ]);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

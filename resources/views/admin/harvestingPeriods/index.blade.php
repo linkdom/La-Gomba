@@ -21,8 +21,13 @@
                             <strong>Harvesting Periods:</strong>
                         </li>
                     @foreach($harvestingPeriods as $harvestingPeriod)
-                        <a href="/admin/harvesting-period/edit/{{$harvestingPeriod->id}}" class="list-group-item list-group-item-action">
-                            <span>{{$harvestingPeriod->product->title}} {{$harvestingPeriod->from}} - {{$harvestingPeriod->to}}</span>
+                        <a href="/admin/harvesting-periods/edit/{{$harvestingPeriod->id}}" class="list-group-item list-group-item-action">
+                            <span><strong>{{date('d.m.Y', strtotime($harvestingPeriod->from))}} - {{date('d.m.Y', strtotime($harvestingPeriod->to))}} </strong> {{$harvestingPeriod->product->title}} {{$harvestingPeriod->product->subtitle}}</span>
+                        <form style="display: inline-block; float: right;" action="{{route('admin.harvestingPeriods.delete', ['id' => $harvestingPeriod->id])}}" method="post">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <button style="padding-top: 0px; padding-bottom: 0px;" class="btn btn-danger">x</button>
+                            </form>
                         </a>
                     @endforeach
                     </ul>

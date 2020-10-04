@@ -21,12 +21,28 @@
                             <strong>Stocks:</strong>
                         </li>
                     @foreach($products as $product)
-                        <a href="/admin/stocks/edit/{{$product->id}}" class="list-group-item list-group-item-action">
-                            <span>{{$product->id}}</span>
-                            <span>{{$product->title}}</span>
-                            <span>{{$product->subtitle}}</span>
-                            <span style="float: right">12kg</span>
-                        </a>
+                        @if(!empty($product->stockAmount))
+                            <a href="/admin/stocks/edit/{{$product->stockAmount->id}}" class="list-group-item list-group-item-action">
+                                <span>{{$product->id}}</span>
+                                <span><strong>{{$product->title}} </strong></span>
+                                <span>{{$product->subtitle}}</span>
+                                <span style="padding-left: 50px;"><strong>{{$product->stockAmount->amount}} kg</strong></span>
+
+                                <form style="display: inline-block; float: right;" action="{{route('admin.stocks.delete', ['id' => $product->stockAmount->id])}}" method="post">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <button style="padding-top: 0px; padding-bottom: 0px;" class="btn btn-danger">x</button>
+                                </form>
+
+                            </a>
+                        @else
+                            <a href="/admin/stocks/create" class="list-group-item list-group-item-action">
+                                <span>{{$product->id}}</span>
+                                <span><strong>{{$product->title}} </strong></span>
+                                <span>{{$product->subtitle}}</span>
+                                <span style="padding-left: 110px;"><strong>No Stock Entry!</strong></span>
+                            </a>
+                        @endif
                     @endforeach
                     </ul>
                 </div>

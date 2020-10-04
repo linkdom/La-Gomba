@@ -48,10 +48,28 @@ class AdminStocksController extends Controller
     public function store(Request $request)
     {
         if ($request->user()->currentTeam->name == "Admin") {
-            $products = Product::all();
+
+            $this ->validate($request, [
+                'product' => 'required',
+                'amount' => 'required'
+            ]);
+
             $stocks = Stock::all();
 
-            return view('admin.stocks.index')->with(['stocks' => $stocks, 'products' => $products, 'message' => 'Stock added successfully']);
+            foreach ($stocks as $stock) {
+                if ($stock->product_id == $request->get('product')) {
+                    return redirect()->back()->withErrors(['error' => 'There is already a stock entry for this product. Please edit or delete the existing one.']);
+                }
+            }
+
+            Stock::create([
+                'product_id' => $request->get('product'),
+                'amount' => $request->get('amount')
+            ]);
+
+            $products = Product::all();
+
+            return view('admin.stocks.index')->with(['stocks' => $stocks, 'products' => $products, 'message' => 'Stock successfully added']);
         } else {
             abort(404);
         }
@@ -72,11 +90,18 @@ class AdminStocksController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        if ($request->user()->currentTeam->name == "Admin") {
+
+            $stock = Stock::find($id);
+            $product = Product::find($stock->product_id);
+
+            return view('admin.stocks.edit')->with(['stock' => $stock, 'product' => $product]);
+        } else {
+            abort(404);
+        }
     }
 
     /**
@@ -84,21 +109,53 @@ class AdminStocksController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->user()->currentTeam->name == "Admin") {
+
+            $this ->validate($request, [
+                'amount' => 'required'
+            ]);
+
+            $stocks = Stock::all();
+
+            foreach ($stocks as $stock) {
+                if ($stock->product_id == $request->get('product')) {
+                    return redirect()->back()->withErrors(['error' => 'There is already a stock entry for this product. Please edit or delete the existing one.']);
+                }
+            }
+
+            $stock = Stock::find($id);
+            $stock->amount = $request->get('amount');
+            $stock->save();
+
+            $products = Product::all();
+
+            return view('admin.stocks.index')->with(['stocks' => $stocks, 'products' => $products, 'message' => 'Stock successfully edited']);
+        } else {
+            abort(404);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        if ($request->user()->currentTeam->name == "Admin") {
+
+            $stock = Stock::find($id);
+            $stock->delete();
+
+            $stocks = Stock::all();
+            $products = Product::all();
+
+            return view('admin.stocks.index')->with(['stocks' => $stocks, 'products' => $products, 'message' => 'Stock successfully deleted']);
+        } else {
+            abort(404);
+        }
     }
 }

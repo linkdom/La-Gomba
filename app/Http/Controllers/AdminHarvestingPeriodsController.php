@@ -17,7 +17,7 @@ class AdminHarvestingPeriodsController extends Controller
     {
         if ($request->user()->currentTeam->name == "Admin") {
 
-            $harvestingPeriods = HarvestingPeriod::all();
+            $harvestingPeriods = HarvestingPeriod::all()->sortBy('from');
 
             return view('admin.harvestingPeriods.index')->with('harvestingPeriods', $harvestingPeriods);
         } else {
@@ -51,10 +51,23 @@ class AdminHarvestingPeriodsController extends Controller
     {
         if ($request->user()->currentTeam->name == "Admin") {
 
-            $productId = $request->get('product');
-            $from = $request->get('from');
-            $to = $request->get('to');
-            $harvestingPeriods = HarvestingPeriod::all();
+            $this ->validate($request, [
+                'product' => 'required',
+                'from' => 'required',
+                'to' => 'required'
+            ]);
+
+            if ($request->get('from') > $request->get('to')) {
+                return redirect()->back()->withErrors(['from' => 'Start date must be smaller than end date']);
+            }
+
+            HarvestingPeriod::create([
+                'product_id' => $request->get('product'),
+                'from' => $request->get('from'),
+                'to' => $request->get('to')
+            ]);
+
+            $harvestingPeriods = HarvestingPeriod::all()->sortBy('from');
 
             return view('admin.harvestingPeriods.index')->with(['harvestingPeriods' => $harvestingPeriods, 'message' => 'Harvesting period created successfully.']);
         } else {
@@ -76,12 +89,20 @@ class AdminHarvestingPeriodsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param int $id
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        if ($request->user()->currentTeam->name == "Admin") {
+
+            $harvestingPeriod = HarvestingPeriod::find($id);
+            $products = Product::all();
+
+            return view('admin.harvestingPeriods.edit')->with(['harvestingPeriod' => $harvestingPeriod, 'products' => $products]);
+        } else {
+            abort(404);
+        }
     }
 
     /**
@@ -89,21 +110,53 @@ class AdminHarvestingPeriodsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->user()->currentTeam->name == "Admin") {
+
+            $this ->validate($request, [
+                'product' => 'required',
+                'from' => 'required',
+                'to' => 'required'
+            ]);
+
+            if ($request->get('from') > $request->get('to')) {
+                return redirect()->back()->withErrors(['from' => 'Start date must be smaller than end date']);
+            }
+
+            $harvestingPeriod = HarvestingPeriod::find($id);
+            $harvestingPeriod->product_id = $request->get('product');
+            $harvestingPeriod->from = $request->get('from');
+            $harvestingPeriod->to = $request->get('to');
+            $harvestingPeriod->save();
+
+            $harvestingPeriods = HarvestingPeriod::all()->sortBy('from');
+
+            return view('admin.harvestingPeriods.index')->with(['harvestingPeriods' => $harvestingPeriods, 'message' => 'Harvesting period successfully created']);
+        } else {
+            abort(404);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param int $id
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        if ($request->user()->currentTeam->name == "Admin") {
+
+            $harvestingPeriod = HarvestingPeriod::find($id);
+            $harvestingPeriod->delete();
+
+            $harvestingPeriods = HarvestingPeriod::all()->sortBy('from');
+
+            return view('admin.harvestingPeriods.index')->with(['harvestingPeriods' => $harvestingPeriods, 'message' => 'Harvesting period successfully deleted.']);
+        } else {
+            abort(404);
+        }
     }
 }

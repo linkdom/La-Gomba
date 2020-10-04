@@ -189,17 +189,20 @@
     </x-app-layout>
 @else
     <x-app-layout>
-        <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span style="padding-left: 25vw"><strong>Dashboard</strong></span> <br>
+                <span style="padding-left: 25vw">Here you can see your orders!</span>
+            </li>
+
+        </ul>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg orders-list">
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Your Orders
+                        Your Orders:
                         <span class="badge badge-primary badge-pill">1</span>
                     </li>
                     <div id="accordion">

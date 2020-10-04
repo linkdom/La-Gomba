@@ -77,7 +77,7 @@ class AdminProductsController extends Controller
 
             $products = Product::all();
 
-            return view('admin.products.index')->with(['products' => $products, 'message' => 'Product created successfully.']);
+            return view('admin.products.index')->with(['products' => $products, 'message' => 'Product successfully created.']);
         } else {
             abort(404);
         }
@@ -156,7 +156,7 @@ class AdminProductsController extends Controller
 
             $products = Product::all();
 
-            return view('admin.products.index')->with(['products' => $products, 'message' => 'Product edited successfully.']);
+            return view('admin.products.index')->with(['products' => $products, 'message' => 'Product successfully edited.']);
         } else {
             abort(404);
         }
