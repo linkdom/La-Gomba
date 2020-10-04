@@ -22,10 +22,12 @@
                         </li>
                     @foreach($posts as $post)
                         <a href="/admin/posts/edit/{{$post->id}}" class="list-group-item list-group-item-action">
-                            <span>{{$post->id}}</span>
-                            <span><strong>{{$post->title}}</strong></span>
-                            <span>{{$post->subtitle}}</span>
-                            <span style="float: right">{{$post->created_at}}</span>
+                            <p style="width: 100ch; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; display: inline-block">{{$post->id}} <strong>{{$post->title}}</strong> {{date('d.m.Y', strtotime($post->created_at))}}</p>
+                            <form style="display: inline-block; float: right;" action="{{route('admin.blog.delete', ['id' => $post->id])}}" method="post">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <button style="padding-top: 0px; padding-bottom: 0px;" class="btn btn-danger">x</button>
+                            </form>
                         </a>
                     @endforeach
                     </ul>

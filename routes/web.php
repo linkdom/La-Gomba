@@ -73,7 +73,7 @@ Route::post('/admin/products/update/{id}', [
     'as' => 'admin.products.update'
 ]);
 
-Route::delete('/admin/events/delete/{id}', [
+Route::delete('/admin/products/delete/{id}', [
     'uses' => 'App\Http\Controllers\AdminProductsController@destroy',
     'as' => 'admin.products.delete'
 ]);
@@ -92,6 +92,21 @@ Route::get('/admin/posts/create', [
 Route::post('/admin/posts/store', [
     'uses' => 'App\Http\Controllers\AdminBlogController@store',
     'as' => 'admin.blog.store'
+]);
+
+Route::get('/admin/posts/edit/{id}', [
+    'uses' => 'App\Http\Controllers\AdminBlogController@edit',
+    'as' => 'admin.blog.edit'
+]);
+
+Route::post('/admin/posts/update/{id}', [
+    'uses' => 'App\Http\Controllers\AdminBlogController@update',
+    'as' => 'admin.blog.update'
+]);
+
+Route::delete('/admin/posts/delete/{id}', [
+    'uses' => 'App\Http\Controllers\AdminBlogController@destroy',
+    'as' => 'admin.blog.delete'
 ]);
 
 // ADMIN HARVESTING PERIODS
