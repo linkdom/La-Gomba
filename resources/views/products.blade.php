@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="hero-image">
-    <div class="p-10">
-        <div style="background-color: rgba(0,0,0,.5); width: 40%; color: white" class="jumbotron">
-            <h1 style="font-size: 2em" class="display-4">Upcoming Harvesting Periods!</h1>
+    <div class="p-10 mobile-jumbo">
+        <div class="jumbotron">
+            <h1 class="display-4">Upcoming Harvesting Periods!</h1>
             <hr class="my-4">
             @foreach($harvestingPeriods as $hp)
                 @if($hp->to > $today)
@@ -17,7 +17,7 @@
     </div>
 </div>
 
-<div style="width: 100%" class="row mt-10">
+<div style="width: 100%" class="row mt-10 mobile-card">
         @foreach($products as $product)
             <div class="col-md-3">
                 <div class="card">

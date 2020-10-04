@@ -4,7 +4,7 @@ require('./bootstrap');
 window.onscroll = function() {myFunction()};
 
 // Get the navbar
-var navbar = document.getElementById("nav-opacity");
+var navbar = document.getElementById("stickNav");
 
 // Get the offset position of the navbar
 var sticky = navbar.offsetTop;
@@ -13,8 +13,12 @@ var sticky = navbar.offsetTop;
 function myFunction() {
     if (window.pageYOffset >= sticky) {
         navbar.classList.add("sticky")
-        document.getElementById("nav-opacity").style.setProperty("background-color", "rgba(200,200,200,0.9)", "important");
+        document.getElementById("stickNav").style.setProperty("z-index", "9999", "important");
     } else {
-        navbar.classList.remove("sticky");
+        if (navbar.classList.contains("sticky")) {
+            navbar.classList.remove("sticky");
+        } else {
+            navbar.classList.add("sticky");
+        }
     }
 }

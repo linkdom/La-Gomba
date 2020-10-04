@@ -24,7 +24,7 @@
         </form>
         <p style="padding-bottom: 8px">Currently in Stock: {{$stockAmount}}kg</p>
         @if($harvestingPeriod !== null)
-            <h2>Next Harvesting Period: from {{$harvestingPeriod->from}} to {{$harvestingPeriod->to}}</h2>
+            <h2>Next Harvesting Period: from {{date('d.m.Y', strtotime($harvestingPeriod->from))}} to {{date('d.m.Y', strtotime($harvestingPeriod->to))}}</h2>
         @endif
         <div class="alert alert-danger my-4 mx-auto">ATTENTION! Delivery is only possible within the Vienna city zone!</div>
     </div>

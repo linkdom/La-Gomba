@@ -5,10 +5,10 @@
 </div>
 <div class="page-container">
     <div class="content-wrap">
-        <div class="container">
+        <div class="container mobile-container">
             <img class="container-image-right" src="/img/nora.png">
             <div class="container-text-left">
-                <h1 class="container-heading">WHO IS NORA?</h1>
+                <h1 class="container-heading">Who is nora?</h1>
                 <p class="container-paragraph">Nora decided to act on her Climate Grief and started looking for
                     solutions that are doing good for the environment and somewhat
                     profitable. She wanted to help lowering meat consumption and at the
@@ -18,11 +18,11 @@
             </div>
         </div>
 
-        <div class="container">
+        <div class="container mobile-container">
             <img style="height: 80px; margin-bottom: -10px" src="/img/mushroom-drawn-2.png" alt="">
             <img class="container-image-left" src="/img/markhof-map.png">
             <div class="container-text-right">
-                <h1 class="container-heading">HOW IT ALL STARTED?</h1>
+                <h1 class="container-heading">How it all started?</h1>
                 <p class="container-paragraph">In the 3rd district of Vienna in Markhofgasse there is a coworking space
                     full of vibrant people with life and energy. Apart from the many people
                     there are many spaces also. At the end of 2019 in one of the basements
@@ -34,10 +34,10 @@
             </div>
         </div>
 
-        <div class="container">
+        <div class="container mobile-container">
             <img class="container-image-right" src="/img/shrooms.png">
             <div class="container-text-left">
-                <h1 class="container-heading">HOW DOES IT WORK?</h1>
+                <h1 class="container-heading">How does it work?</h1>
                 <p class="container-paragraph">Instead of going to the garbage the daily collected
                     coffee grounds go to Hut & Stiel's production site
                     where they are carefully turned in to mushroom
@@ -48,10 +48,10 @@
             </div>
         </div>
 
-        <div style="padding-bottom: 20vh" id="contact" class="container">
+        <div id="contact" class="container mobile-container">
             <img class="coffee" src="/img/coffee.png">
             <div class="container-paragraph contact-form">
-                <h1 class="text-center mb-3">Contact Me!</h1>
+                <h1 class="text-center mb-3 contact-heading">Contact Me!</h1>
                 <form method="POST" action="">
                     <div class="input-group mb-3 email">
                         <div class="input-group-prepend">
