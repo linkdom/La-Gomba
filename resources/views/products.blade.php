@@ -2,38 +2,42 @@
 
 @section('content')
 <div class="hero-image">
-
-</div>
-
-<div class="card-deck">
-    <div class="card hp">
-        <div class="harvesting-info">
-            <h1 class="harvesting-header">Upcoming Harvesting Periods:</h1>
+    <div class="p-10">
+        <div style="background-color: rgba(0,0,0,.5); width: 40%; color: white" class="jumbotron">
+            <h1 style="font-size: 2em" class="display-4">Upcoming Harvesting Periods!</h1>
+            <hr class="my-4">
             @foreach($harvestingPeriods as $hp)
                 @if($hp->to > $today)
-                    <p class="mushroom-type">{{$hp->product->title}}</p>
-                    <p class="harvesting-period">from {{$hp->from}} to {{$hp->to}}</p>
-                    <hr class="harvesting">
+
+                    <p>{{$hp->product->title}} from {{date('d.m.Y', strtotime($hp->from))}} to {{date('d.m.Y', strtotime($hp->to))}}</p>
+                    <hr>
                 @endif
             @endforeach
         </div>
     </div>
-
-    @foreach($products as $product)
-        <div class="card">
-            <img class="card-img-top" src="{{$product->image}}" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">{{$product->title}}</h5>
-                <p class="card-text">{{$product->subtitle}}</p>
-                <br>
-                <p class="card-text"><b>{{$product->price}}€ per kg</b></p>
-            </div>
-            <div class="card-footer text-center">
-                <a href="/mushroom-details/{{$product->id}}"><p class="card-text">View Product</p></a>
-            </div>
-        </div>
-    @endforeach
 </div>
+
+<div style="width: 100%" class="row mt-10">
+        @foreach($products as $product)
+            <div class="col-md-3">
+                <div class="card">
+                    <img style="max-height: 200px" class="card-img-top" src="{{$product->image}}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{$product->title}}</h5>
+                        <p class="card-text">{{$product->subtitle}}</p>
+                        <br>
+                        <p class="card-text"><b>{{$product->price}}€ per kg</b></p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="/mushroom-details/{{$product->id}}"><p class="card-text">View Product</p></a>
+                    </div>
+                </div>
+            </div>
+
+        @endforeach
+    </div>
+</div>
+
 
 @include('inc.footer')
 

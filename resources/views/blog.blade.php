@@ -2,9 +2,15 @@
 
 @section('content')
 <div class="hero-image">
-
+    <div class="p-10">
+        <div style="background-color: rgba(0,0,0,.5); width: 40%; color: white" class="jumbotron">
+            <h1 style="font-size: 2em" class="display-4">Welcome to my blog!</h1>
+            <hr class="my-4">
+            <p>Here you can follow my latest news! I am not yet sure about this container and might will remove it later, let me know nora :)</p>
+        </div>
+    </div>
 </div>
-<div class="row mt-10">
+<div style="width: 100%" class="row mt-10">
     @foreach($posts as $post)
     <div class="col-md-3">
         <div class="card">

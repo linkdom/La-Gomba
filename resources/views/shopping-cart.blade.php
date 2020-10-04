@@ -41,6 +41,12 @@
         </div>
     </div>
 @else
+    <div class="m-10 text-center">
+        <div class="alert alert-primary" >
+            You have no items in the shopping cart yet. <br><br><br>
+            <a href="/products" class="btn btn-primary">See my products here</a>
+        </div>
+    </div>
 
 @endif
 

@@ -80,7 +80,7 @@
                                 Harvesting Periods
                             </x-jet-dropdown-link>
 
-                            <x-jet-dropdown-link href="/admin/stock">
+                            <x-jet-dropdown-link href="/admin/stocks">
                                 Stock
                             </x-jet-dropdown-link>
                         @endif
@@ -206,7 +206,7 @@
                         Harvesting Periods
                     </x-jet-dropdown-link>
 
-                    <x-jet-dropdown-link href="/admin/stock">
+                    <x-jet-dropdown-link href="/admin/stocks">
                         Stock
                     </x-jet-dropdown-link>
                 @endif

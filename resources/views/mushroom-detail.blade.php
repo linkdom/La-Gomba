@@ -12,7 +12,7 @@
         <h2 class="pd-subtitle">{{$product->subtitle}}</h2>
         <p class="pd-paragraph">{{$product->description}}</p>
         <br>
-        <h2 class="pd-price">{{$product->price}} per kg</h2>
+        <h2 class="pd-price">{{$product->price}}€ per kg</h2>
         <form class="pd-form" method="" action="{{ route('product.addToCart', ['id' => $product->id]) }}">
             <input  style="width: 50px" class="p-1" type="number" name="quantity" id="quantity" value="1" min="1" max="{{$stockAmount}}" placeholder="Quantity" required="">
             <h1 class="unit">Kg</h1>
