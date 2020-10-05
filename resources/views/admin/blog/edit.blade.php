@@ -19,7 +19,7 @@
                     </ul>
                 </div>
             @endif
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg orders-list mt-0">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg orders-list mt-0 fade-in">
                 <form class="p-6" action="{{route('admin.blog.update', ['id' => $post->id])}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="input-group mb-3">

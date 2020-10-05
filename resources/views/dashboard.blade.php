@@ -9,7 +9,7 @@
 
         </ul>
 
-        <div class="py-12">
+        <div class="py-12 fade-in">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg orders-list">
                     <ul class="list-group">
@@ -197,7 +197,7 @@
 
         </ul>
 
-    <div class="py-12">
+    <div class="py-12 fade-in">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg orders-list">
                 <ul class="list-group">

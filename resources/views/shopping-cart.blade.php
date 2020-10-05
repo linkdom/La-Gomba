@@ -1,7 +1,7 @@
 @extends('layouts.standard')
 
 @section('content')
-    <script src=""> // Replace YOUR_SB_CLIENT_ID with your sandbox client ID
+    <script src="https://www.paypal.com/sdk/js?client-id=AXFdUcNxHTyYdgpOu6R2-7S2zoB-cjOp4z27-cG_AcnUYSMxbelAK6h0VbeFcmveQCaYcrRcdLBUwJj_&currency=EUR"> // Replace YOUR_SB_CLIENT_ID with your sandbox client ID
     </script>
 {{--<div class="hero-image">--}}
 

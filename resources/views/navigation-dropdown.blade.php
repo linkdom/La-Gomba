@@ -24,7 +24,7 @@
                         Contact
                     </x-jet-nav-link>
                     <x-jet-nav-link href="/shopping-cart" :active="request()->routeIs('shoppingCart')">Shopping Cart
-                        <span class="badge badge-secondary">{{Session::has('cart') ? Session::get('cart')->totalQty : ''}}</span>
+                        <span class="badge badge-secondary ml-2">{{Session::has('cart') ? Session::get('cart')->totalQty : ''}}</span>
                     </x-jet-nav-link>
                     @if(\Illuminate\Support\Facades\Auth::check())
                         <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
@@ -140,7 +140,7 @@
                 Contact
             </x-jet-nav-link>
             <x-jet-nav-link href="/shopping-cart" :active="request()->routeIs('shopping-cart')">Shopping Cart
-                <span class="badge badge-secondary">{{Session::has('cart') ? Session::get('cart')->totalQty : ''}}</span>
+                <span class="badge badge-secondary ml-2">{{Session::has('cart') ? Session::get('cart')->totalQty : ''}}</span>
             </x-jet-nav-link>
 
             @if(\Illuminate\Support\Facades\Auth::check())
