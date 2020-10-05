@@ -3,6 +3,40 @@
 @import 'tailwindcss/utilities';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
+/* ANIMATIONS */
+
+.fade-in {
+    animation: fadeIn ease .5s;
+    -webkit-animation: fadeIn ease .5s;
+    -moz-animation: fadeIn ease .5s;
+    -o-animation: fadeIn ease .5s;
+}
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+.hideme{
+    opacity: 0;
+}
+
+/* /ANIMATIONS */
+
 /* INDEX */
 #nav-opacity {
     background-color: rgba(200,200,200,0.1) !important;
@@ -245,10 +279,16 @@ body, html {
 
 /* SHOPPING CART */
 
-@media screen and (max-width: 800px) {
-    .checkout-list {
-        margin-left: 0 !important;
-        width: 100%;
+.cart-wrapper{
+    margin-top: 5%;
+    padding-left: 35%;
+    width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+    .cart-wrapper{
+        margin-top: 10%;
+        padding-left: 8%;
     }
 }
 

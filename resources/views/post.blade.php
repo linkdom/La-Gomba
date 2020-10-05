@@ -1,12 +1,12 @@
 @extends('layouts.standard')
 
 @section('content')
-<div class="hero-image">
+<div class="hero-image fade-in">
 
 </div>
 
 
-<div class="pd-con">
+<div class="pd-con fade-in">
     <img class="pd-image" src="{{$post->image}}">
 
     <div class="pd-text">

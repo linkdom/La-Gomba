@@ -42,11 +42,15 @@ class ProductController extends Controller
         return view('mushroom-detail')->with(['product' => $product, 'harvestingPeriod' => $harvestingPeriod,  'stockAmount' => $stockAmount]);
     }
 
+    public function checkout(){
+        return view('checkout');
+    }
+
     public function getAddToCart(Request $request, $id) {
         $product = Product::find($id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
-        $cart->add($product, $product->id);
+        $cart->add($request->get('quantity'),$product, $product->id, $product->stockAmount->amount);
 
         $request->session()->put('cart', $cart);
         return redirect()->back();
@@ -59,6 +63,11 @@ class ProductController extends Controller
         }
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
+
+        if ($cart->stockAmount > $cart->totalQty){
+            Session::flush('cart');
+        }
+
         return view('shopping-cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
 

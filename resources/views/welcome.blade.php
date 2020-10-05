@@ -1,11 +1,11 @@
 @extends('layouts.standard')
 
 @section('content')
-<div class="hero-image">
+<div class="hero-image fade-in">
 </div>
 <div class="page-container">
     <div class="content-wrap">
-        <div class="container mobile-container">
+        <div class="container mobile-container fade-in">
             <img class="container-image-right" src="/img/nora.png">
             <div class="container-text-left">
                 <h1 class="container-heading">Who is nora?</h1>
@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <div class="container mobile-container">
+        <div class="container mobile-container hideme">
             <img style="height: 80px; margin-bottom: -10px" src="/img/mushroom-drawn-2.png" alt="">
             <img class="container-image-left" src="/img/markhof-map.png">
             <div class="container-text-right">
@@ -34,7 +34,7 @@
             </div>
         </div>
 
-        <div class="container mobile-container">
+        <div class="container mobile-container hideme">
             <img class="container-image-right" src="/img/shrooms.png">
             <div class="container-text-left">
                 <h1 class="container-heading">How does it work?</h1>
@@ -48,7 +48,7 @@
             </div>
         </div>
 
-        <div id="contact" class="container mobile-container">
+        <div id="contact" class="container mobile-container hideme">
             <img class="coffee" src="/img/coffee.png">
             <div class="container-paragraph contact-form">
                 <h1 class="text-center mb-3 contact-heading">Contact Me!</h1>

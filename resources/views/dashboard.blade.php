@@ -72,15 +72,15 @@
                     </div>
 
                     <div id="accordion">
-                        <div id="headingOne">
-                            <button style="outline: none" class="list-group-item list-group-item-action list-group-item-light" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <div id="heading2">
+                            <button style="outline: none" class="list-group-item list-group-item-action list-group-item-light" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
                                 <span>1 kg</span>
                                 <span>Oyster Mushrooms</span>
                                 <span>Quality A</span>
                                 <span style="float: right">Total: 19€</span>
                             </button>
                         </div>
-                        <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div id="collapse2" class="collapse hide" aria-labelledby="heading2" data-parent="#accordion">
                             <div class="card-body">
 
                                 <div style="display: inline-block">
@@ -128,15 +128,15 @@
 
 
                     <div id="accordion">
-                        <div id="headingOne">
-                            <button style="outline: none" class="list-group-item list-group-item-action list-group-item-light" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <div id="headingThree">
+                            <button style="outline: none" class="list-group-item list-group-item-action list-group-item-light" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
                                 <span>2 kg</span>
                                 <span>Lion's Mane</span>
                                 <span>Quality A</span>
                                 <span style="float: right">Total: 52€</span>
                             </button>
                         </div>
-                        <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div id="collapseThree" class="collapse hide" aria-labelledby="headingThree" data-parent="#accordion">
                             <div class="card-body">
 
                                 <div style="display: inline-block">

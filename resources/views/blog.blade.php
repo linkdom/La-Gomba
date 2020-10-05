@@ -1,7 +1,7 @@
 @extends('layouts.standard')
 
 @section('content')
-<div class="hero-image">
+<div class="hero-image fade-in">
     <div class="p-10 mobile-jumbo">
         <div class="jumbotron">
             <h1 class="display-4">Welcome to my blog!</h1>
@@ -10,7 +10,7 @@
         </div>
     </div>
 </div>
-<div style="width: 100%" class="row mt-10 mobile-card">
+<div style="width: 100%" class="row mt-10 mobile-card fade-in">
     @foreach($posts as $post)
     <div class="col-md-3">
         <div class="card">
