@@ -1,35 +1,52 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Ensures optimal rendering on mobile devices. -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!-- Optimal Internet Explorer compatibility -->
-</head>
+@extends('layouts.standard')
 
-<body>
-<script src="https://www.paypal.com/sdk/js?client-id=AXFdUcNxHTyYdgpOu6R2-7S2zoB-cjOp4z27-cG_AcnUYSMxbelAK6h0VbeFcmveQCaYcrRcdLBUwJj_"> // Replace YOUR_SB_CLIENT_ID with your sandbox client ID
-</script>
+@section('content')
 
-<div id="paypal-button-container"></div>
+    @if(Session::has('cart'))
+        <div class="cart-wrapper fade-in">
+            <div style="width: 100%" class="row checkout-list">
+                <div class="col-md-6">
+                    <form method="POST" action="{{ route("create-payment") }}">
+                        @csrf
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Zip Code</label>
+                            <input type="text" class="form-control" name="zip_code" id="exampleInputPassword1" placeholder="Zip Code" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">City</label>
+                            <input type="text" class="form-control" name="city" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="City" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Street and Number</label>
+                            <input type="text" class="form-control" name="street" id="exampleInputPassword1" placeholder="Street and Number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Phone Number</label>
+                            <input type="tel" class="form-control" name="phone" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Phone Number" required>
+                            <small id="emailHelp" class="form-text text-muted">Phone number is needed for delivery.</small>
+                        </div>
 
-<!-- Add the checkout buttons, set up the order and approve the order -->
-<script>
-    paypal.Buttons({
-        createOrder: function(data, actions) {
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: '0.01'
-                    }
-                }]
-            });
-        },
-        onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-                alert('Transaction completed by ' + details.payer.name.given_name);
-            });
-        }
-    }).render('#paypal-button-container'); // Display payment options on your web page
-</script>
-</body>
+                        <button type="submit" class="btn btn-primary">Pay with PayPal</button>
+                    </form>
+                </div>
+            </div>
 
-</html>
+
+        </div>
+    @else
+        <div class="m-10 text-center">
+            <div class="alert alert-primary" >
+                The shopping cart is empty. <br><br><br>
+                <a href="/products" class="btn btn-primary">See my products here</a>
+            </div>
+        </div>
+
+    @endif
+
+
+    <div style="position: absolute; width: 100%; bottom: 0;">
+
+        @include('inc.footer')
+    </div>
+
+@endsection

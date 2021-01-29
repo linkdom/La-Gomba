@@ -19,6 +19,7 @@
 
 <div style="width: 100%" class="row mt-10 mobile-card fade-in">
         @foreach($products as $product)
+        <a class="product-box" href="/mushroom-details/{{$product->id}}">
             <div class="col-md-3">
                 <div class="card">
                     <img style="max-height: 200px" class="card-img-top" src="{{$product->image}}" alt="Card image cap">
@@ -33,7 +34,7 @@
                     </div>
                 </div>
             </div>
-
+        </a>
         @endforeach
     </div>
 </div>

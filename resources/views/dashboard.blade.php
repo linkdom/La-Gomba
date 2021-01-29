@@ -11,21 +11,26 @@
 
         <div class="py-12 fade-in">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                @if(!empty($message))
+                    <div class="alert alert-success"> {{ $message }}</div>
+                @endif
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg orders-list">
                     <ul class="list-group">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Orders:
+                            <span class="badge badge-primary badge-pill">{{count($orders)}}</span>
                         </li>
+
+                    @foreach($orders as $order)
                     <div id="accordion">
-                        <div id="headingOne">
-                            <button style="outline: none" class="list-group-item list-group-item-action list-group-item-light" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                <span>12 kg</span>
-                                <span>Oyster Mushrooms</span>
-                                <span>Quality B</span>
-                                <span style="float: right">Total: 184€</span>
+                        <div id="heading{{$loop->index}}">
+                            <button style="outline: none" class="list-group-item list-group-item-action list-group-item-light" data-toggle="collapse" data-target="#collapse{{$loop->index}}" aria-expanded="true" aria-controls="collapse{{$loop->index}}">
+                                <span>{{date( "d.m.Y H:i", strtotime( $order->created_at ) )}}</span>
+                                <span>{{$order->order_id}}</span>
+                                <span style="float: right">Total: {{$order->total}}€</span>
                             </button>
                         </div>
-                        <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div id="collapse{{$loop->index}}" class="collapse hide" aria-labelledby="heading{{$loop->index}}" data-parent="#accordion">
                             <div class="card-body">
 
                                 <div style="display: inline-block">
@@ -36,26 +41,29 @@
                                 </div>
 
                                 <div style="display: inline-block; padding-left: 20px">
-                                    <span> 3jkefiuh7dfjksfd</span>
+                                    <span><a href="https://www.sandbox.paypal.com/activity/payment/{{$order->order_id}}">{{$order->order_id}}</a></span>
                                     <br>
-                                    <span>2020-10-30 15:32:19</span>
+                                    <span>{{date( "d.m.Y H:i:s", strtotime( $order->created_at ) )}}</span>
                                     <br>
                                 </div>
 
 
                                 <div style="float: right; display: inline-block">
-                                    <span>12kg</span>
-                                    <br>
-                                    <span>Oyster Mushroom Quality B</span>
-                                    <br>
-                                    <span>16€</span>
-                                    <br>
-                                    <br>
-                                    <span><strong>184€</strong></span>
+                                    @foreach(unserialize($order->items) as $item)
+                                        <span>{{$item['qty']}}kg</span>
+                                        <br>
+                                        <span>{{$item['item']['title']}} {{$item['item']['subtitle']}}</span>
+                                        <br>
+                                        <span>{{ $item['price'] / $item['qty'] }}€</span>
+                                        <br>
+                                        <br>
+                                    @endforeach
+                                    <span><strong>{{$order->total}}€</strong></span>
                                     <br>
                                 </div>
 
                                 <div style="float: right; padding-right: 20px; display: inline-block;padding-bottom: 20px">
+                                    @foreach(unserialize($order->items) as $item)
                                     <span>Amount:</span>
                                     <br>
                                     <span>Item:</span>
@@ -63,6 +71,7 @@
                                     <span>Item Price:</span>
                                     <br>
                                     <br>
+                                    @endforeach
                                     <span><strong>Total Price:</strong></span>
                                     <br>
                                 </div>
@@ -70,117 +79,9 @@
                             </div>
                         </div>
                     </div>
-
-                    <div id="accordion">
-                        <div id="heading2">
-                            <button style="outline: none" class="list-group-item list-group-item-action list-group-item-light" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
-                                <span>1 kg</span>
-                                <span>Oyster Mushrooms</span>
-                                <span>Quality A</span>
-                                <span style="float: right">Total: 19€</span>
-                            </button>
-                        </div>
-                        <div id="collapse2" class="collapse hide" aria-labelledby="heading2" data-parent="#accordion">
-                            <div class="card-body">
-
-                                <div style="display: inline-block">
-                                    <span>Order Nr.:</span>
-                                    <br>
-                                    <span>Order Date:</span>
-                                    <br>
-                                </div>
-
-                                <div style="display: inline-block; padding-left: 20px">
-                                    <span> 3jkefiuh7dfjksfd</span>
-                                    <br>
-                                    <span>2020-10-30 15:32:19</span>
-                                    <br>
-                                </div>
+                    @endforeach
 
 
-                                <div style="float: right; display: inline-block">
-                                    <span>1kg</span>
-                                    <br>
-                                    <span>Oyster Mushroom Quality A</span>
-                                    <br>
-                                    <span>19€</span>
-                                    <br>
-                                    <br>
-                                    <span><strong>19€</strong></span>
-                                    <br>
-                                </div>
-
-                                <div style="float: right; padding-right: 20px; display: inline-block;padding-bottom: 20px">
-                                    <span>Amount:</span>
-                                    <br>
-                                    <span>Item:</span>
-                                    <br>
-                                    <span>Item Price:</span>
-                                    <br>
-                                    <br>
-                                    <span><strong>Total Price:</strong></span>
-                                    <br>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div id="accordion">
-                        <div id="headingThree">
-                            <button style="outline: none" class="list-group-item list-group-item-action list-group-item-light" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                                <span>2 kg</span>
-                                <span>Lion's Mane</span>
-                                <span>Quality A</span>
-                                <span style="float: right">Total: 52€</span>
-                            </button>
-                        </div>
-                        <div id="collapseThree" class="collapse hide" aria-labelledby="headingThree" data-parent="#accordion">
-                            <div class="card-body">
-
-                                <div style="display: inline-block">
-                                    <span>Order Nr.:</span>
-                                    <br>
-                                    <span>Order Date:</span>
-                                    <br>
-                                </div>
-
-                                <div style="display: inline-block; padding-left: 20px">
-                                    <span> 3jkefiuh7dfjksfd</span>
-                                    <br>
-                                    <span>2020-10-30 15:32:19</span>
-                                    <br>
-                                </div>
-
-
-                                <div style="float: right; display: inline-block">
-                                    <span>2kg</span>
-                                    <br>
-                                    <span>Lion's Mane</span>
-                                    <br>
-                                    <span>26€</span>
-                                    <br>
-                                    <br>
-                                    <span><strong>52€</strong></span>
-                                    <br>
-                                </div>
-
-                                <div style="float: right; padding-right: 20px; display: inline-block;padding-bottom: 20px">
-                                    <span>Amount:</span>
-                                    <br>
-                                    <span>Item:</span>
-                                    <br>
-                                    <span>Item Price:</span>
-                                    <br>
-                                    <br>
-                                    <span><strong>Total Price:</strong></span>
-                                    <br>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
                     </ul>
                 </div>
             </div>
@@ -199,22 +100,25 @@
 
     <div class="py-12 fade-in">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            @if(!empty($message))
+                <div class="alert alert-success"> {{ $message }}</div>
+            @endif
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg orders-list">
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Your Orders:
-                        <span class="badge badge-primary badge-pill">1</span>
+                        <span class="badge badge-primary badge-pill">{{count($userOrders)}}</span>
                     </li>
+                    @foreach($userOrders as $order)
                     <div id="accordion">
-                        <div id="headingOne">
-                            <button style="outline: none" class="list-group-item list-group-item-action list-group-item-light" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                <span>3 kg</span>
-                                <span>Oyster Mushrooms</span>
-                                <span>Quality A</span>
-                                <span style="float: right">Total: 57€</span>
+                        <div id="heading{{$loop->index}}">
+                            <button style="outline: none" class="list-group-item list-group-item-action list-group-item-light" data-toggle="collapse" data-target="#collapse{{$loop->index}}" aria-expanded="true" aria-controls="collapse{{$loop->index}}">
+                                <span>{{date( "d.m.Y H:i", strtotime( $order->created_at ) )}}</span>
+                                <span>{{$order->order_id}}</span>
+                                <span style="float: right">Total: {{$order->total}}€</span>
                             </button>
                         </div>
-                        <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div id="collapse{{$loop->index}}" class="collapse hide" aria-labelledby="heading{{$loop->index}}" data-parent="#accordion">
                             <div class="card-body">
 
                                     <div style="display: inline-block">
@@ -225,26 +129,28 @@
                                     </div>
 
                                     <div style="display: inline-block; padding-left: 20px">
-                                        <span> 3jkefiuh7dfjksfd</span>
+                                        <span>{{$order->order_id}}</span>
                                         <br>
-                                        <span>2020-10-30 15:32:19</span>
+                                        <span>{{$order->created_at}}</span>
                                         <br>
                                     </div>
 
-
                                     <div style="float: right; display: inline-block">
-                                        <span>3kg</span>
+                                    @foreach(unserialize($order->items) as $item)
+                                        <span>{{$item['qty']}}kg</span>
                                         <br>
-                                        <span>Oyster Mushroom Quality A</span>
+                                        <span>{{$item['item']['title']}} {{$item['item']['subtitle']}}</span>
                                         <br>
-                                        <span>19€</span>
+                                        <span>{{ $item['price'] / $item['qty'] }}€</span>
                                         <br>
                                         <br>
-                                        <span><strong>57€</strong></span>
+                                    @endforeach
+                                        <span><strong>{{$order->total}}€</strong></span>
                                         <br>
                                     </div>
 
                                     <div style="float: right; padding-right: 20px; display: inline-block;padding-bottom: 20px">
+                                        @foreach(unserialize($order->items) as $item)
                                         <span>Amount:</span>
                                         <br>
                                         <span>Item:</span>
@@ -252,6 +158,7 @@
                                         <span>Item Price:</span>
                                         <br>
                                         <br>
+                                        @endforeach
                                         <span><strong>Total Price:</strong></span>
                                         <br>
                                     </div>
@@ -259,6 +166,7 @@
                             </div>
                         </div>
                     </div>
+                        @endforeach
 
 
 

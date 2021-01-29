@@ -17,9 +17,8 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->string('order_id');
             $table->integer('user_id');
-            $table->string('items');
-            $table->string('amount');
-            $table->string('value');
+            $table->longText('items');
+            $table->string('total');
             $table->string('shipping_city');
             $table->integer('shipping_postcode');
             $table->string('shipping_street');

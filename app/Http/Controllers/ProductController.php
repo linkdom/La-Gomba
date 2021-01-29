@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\HarvestingPeriod;
+use App\Models\HeaderText;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -34,17 +35,15 @@ class ProductController extends Controller
         $product = Product::find($request->id);
         $harvestingPeriod = $product->harvestingPeriod;
         $stockAmount = null;
+        $headerText = HeaderText::where('slug', 'product-details')->first();
 
         if (!empty($product->stockAmount)) {
             $stockAmount = $product->stockAmount->amount;
         }
 
-        return view('mushroom-detail')->with(['product' => $product, 'harvestingPeriod' => $harvestingPeriod,  'stockAmount' => $stockAmount]);
+        return view('mushroom-detail')->with(['product' => $product, 'harvestingPeriod' => $harvestingPeriod,  'stockAmount' => $stockAmount, 'text' => $headerText]);
     }
 
-    public function checkout(){
-        return view('checkout');
-    }
 
     public function getAddToCart(Request $request, $id) {
         $product = Product::find($id);
@@ -57,15 +56,54 @@ class ProductController extends Controller
 
     }
 
+    public function getReduceByOne($id){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->reduceByOne($id);
+
+        if(count($cart->items) > 0 ){
+            Session::put('cart', $cart);
+        } else {
+            Session::forget('cart');
+        }
+
+        return redirect()->back();
+    }
+
+    public function getAddOne($id){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->addOne($id);
+
+        Session::put('cart', $cart);
+
+        return redirect()->back();
+    }
+
+    public function getRemoveItem($id) {
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->removeItem($id);
+
+        if(count($cart->items) > 0 ){
+            Session::put('cart', $cart);
+        } else {
+            Session::forget('cart');
+        }
+
+        return redirect()->back();
+    }
+
     public function getCart() {
         if (!Session::has('cart')) {
-            return view('shopping-cart');
+            $headerText = HeaderText::where('slug', 'shopping-cart')->first();
+            return view('shopping-cart')->with('text', $headerText);
         }
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
 
         if ($cart->stockAmount > $cart->totalQty){
-            Session::flush('cart');
+            Session::forget('cart');
         }
 
         return view('shopping-cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);

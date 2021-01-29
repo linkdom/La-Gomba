@@ -2,7 +2,15 @@
 
 @section('content')
 <div class="hero-image fade-in">
-
+    @if($text->status === 1)
+        <div class="p-10 mobile-jumbo">
+            <div class="jumbotron">
+                <h1 class="display-4">{{$text->title}}</h1>
+                <hr class="my-4">
+                <p>{{$text->subtitle}}</p>
+            </div>
+        </div>
+    @endif
 </div>
 
 

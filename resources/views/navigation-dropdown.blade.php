@@ -18,9 +18,9 @@
                         Products
                     </x-jet-nav-link>
                     <x-jet-nav-link href="/blog" :active="request()->routeIs('blog')">
-                        Blog
+                        About
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="/#contact" :active="request()->routeIs('contact')">
+                    <x-jet-nav-link href="/blog/#contact" :active="request()->routeIs('contact')">
                         Contact
                     </x-jet-nav-link>
                     <x-jet-nav-link href="/shopping-cart" :active="request()->routeIs('shoppingCart')">Shopping Cart
@@ -69,6 +69,10 @@
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 Manage Content
                             </div>
+
+                            <x-jet-dropdown-link href="/admin/texts">
+                                Header Texts
+                            </x-jet-dropdown-link>
 
                             <x-jet-dropdown-link href="/admin/products">
                                 Products
@@ -134,9 +138,9 @@
                 Products
             </x-jet-nav-link>
             <x-jet-nav-link href="/blog" :active="request()->routeIs('blog')">
-                Blog
+                About
             </x-jet-nav-link>
-            <x-jet-nav-link href="/#contact" :active="request()->routeIs('contact')">
+            <x-jet-nav-link href="/blog/#contact" :active="request()->routeIs('contact')">
                 Contact
             </x-jet-nav-link>
             <x-jet-nav-link href="/shopping-cart" :active="request()->routeIs('shopping-cart')">Shopping Cart
@@ -195,6 +199,10 @@
                     <div class="block px-4 py-2 text-xs text-gray-400">
                         Manage Content
                     </div>
+
+                    <x-jet-dropdown-link href="/admin/texts">
+                        Header Texts
+                    </x-jet-dropdown-link>
 
                     <x-jet-dropdown-link href="/admin/products">
                         Products

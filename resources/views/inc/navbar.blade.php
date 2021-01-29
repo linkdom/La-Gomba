@@ -11,10 +11,10 @@
                     <a class="nav-link" href="/products">Products </a>
                 </li>
                 <li class="nav-item @if(Request::is('blog')) active @endif">
-                    <a class="nav-link" href="/blog">Blog </a>
+                    <a class="nav-link" href="/blog">About </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/#contact">Contact </a>
+                    <a class="nav-link" href="/blog/#contact">Contact </a>
                 </li>
             </ul>
             <li style="color: rgba(0,0,0,.5);float: right; list-style-type: none;" class="nav-item @if(Request::is('dashboard')) active @endif">
@@ -51,10 +51,10 @@
                     <a class="nav-link" href="/products">Products <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item @if(Request::is('blog')) active @endif">
-                    <a class="nav-link" href="/blog">Blog </a>
+                    <a class="nav-link" href="/blog">About </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/#contact">Contact </a>
+                    <a class="nav-link" href="/blog/#contact">Contact </a>
                 </li>
             </ul>
             <li style="color: rgba(0,0,0,.5);float: right; list-style-type: none;" class="nav-item">

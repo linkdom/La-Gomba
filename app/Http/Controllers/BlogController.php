@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\HeaderText;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -14,15 +15,17 @@ class BlogController extends Controller
     public function index()
     {
         $posts = Blog::all();
+        $headerText = HeaderText::where('slug', 'blog')->first();
 
-        return view('blog')->with('posts', $posts);
+        return view('welcome')->with(['posts' => $posts, 'text' =>$headerText]);
     }
 
     public function details(Request $request)
     {
         $post = Blog::find($request->id);
+        $headerText = HeaderText::where('slug', 'blog-details')->first();
 
-        return view('post')->with('post', $post);
+        return view('post')->with(['post' => $post, 'text' => $headerText]);
     }
 
     /**

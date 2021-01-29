@@ -13,8 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/', [
+    'uses' => 'App\Http\Controllers\BlogController@index',
+    'as' => 'index'
+]);
+
+Route::get('/gdpr', function () {
+    return view('gdpr');
 });
 
 Route::get('/products', [
@@ -27,15 +33,12 @@ Route::get('/mushroom-details/{id}', [
     'as' => 'products'
 ]);
 
-Route::get('/add-to-cart/{id}', [
-        'uses' => 'App\Http\Controllers\ProductController@getAddToCart',
-        'as' => 'product.addToCart'
-    ]);
-
 Route::get('/blog', [
-    'uses' => 'App\Http\Controllers\BlogController@index',
+    'uses' => 'App\Http\Controllers\AboutController@index',
     'as' => 'blog'
 ]);
+
+Route::post('/blog/contact', 'App\Http\Controllers\MailSendingController@sendMail');
 
 Route::get('/post/{id}', [
     'uses' => 'App\Http\Controllers\BlogController@details',
@@ -47,10 +50,60 @@ Route::get('/shopping-cart', [
     'as' => 'shoppingCart'
 ]);
 
-Route::get('/checkout', [
-    'uses' => 'App\Http\Controllers\ProductController@checkout',
-    'as' => 'checkout'
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    Route::get('/add-to-cart/{id}', [
+        'uses' => 'App\Http\Controllers\ProductController@getAddToCart',
+        'as' => 'product.addToCart'
+    ]);
+
+    Route::get('/add-one/{id}', [
+        'uses' => 'App\Http\Controllers\ProductController@getAddOne',
+        'as' => 'product.add'
+    ]);
+
+    Route::get('/reduce/{id}', [
+        'uses' => 'App\Http\Controllers\ProductController@getReduceByOne',
+        'as' => 'product.reduceByOne'
+    ]);
+
+    Route::get('/remove/{id}', [
+        'uses' => 'App\Http\Controllers\ProductController@getRemoveItem',
+        'as' => 'product.remove'
+    ]);
+
+    Route::get('/checkout', [
+        'uses' => 'App\Http\Controllers\OrderController@checkout',
+        'as' => 'checkout'
+    ]);
+
+    Route::post('/create-payment', "App\Http\Controllers\OrderController@create")->name("create-payment");
+
+    Route::get('/execute-payment', [
+        'uses' => 'App\Http\Controllers\OrderController@execute',
+        'as' => 'checkout.execute'
+    ]);
+
+
+});
+
+//ADMIN TEXTS
+
+Route::get('/admin/texts', [
+    'uses' => 'App\Http\Controllers\AdminTextController@index',
+    'as' => 'admin.texts.index'
 ]);
+
+Route::get('/admin/texts/edit/{id}', [
+    'uses' => 'App\Http\Controllers\AdminTextController@edit',
+    'as' => 'admin.texts.edit'
+]);
+
+Route::post('/admin/texts/update/{id}', [
+    'uses' => 'App\Http\Controllers\AdminTextController@update',
+    'as' => 'admin.texts.update'
+]);
+
 
 // ADMIN PRODUCTS
 Route::get('/admin/products', [
@@ -176,6 +229,7 @@ Route::delete('/admin/stocks/delete/{id}', [
     'as' => 'admin.stocks.delete'
 ]);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [
+        'uses' => 'App\Http\Controllers\ProfileController@dashboard',
+        'as' => 'dashboard'
+]);
