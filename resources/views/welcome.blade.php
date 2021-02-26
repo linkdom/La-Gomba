@@ -2,40 +2,47 @@
 
 
 @section('content')
-    <div class="hero-image fade-in">
-        @if($text->status === 1)
-        <div class="p-10 mobile-jumbo">
-            <div class="jumbotron">
-                <h1 class="display-4">{{$text->title}}</h1>
-                <hr class="my-4">
-                <p>{{$text->subtitle}}</p>
-            </div>
+    <!-- This example requires Tailwind CSS v2.0+ -->
+    <div class="relative pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
+        <div class="absolute inset-0">
+            <div class="bg-white h-1/3 sm:h-2/3"></div>
         </div>
-            @endif
-    </div>
-    <div style="width: 100%" class="row mt-10 mobile-card fade-in">
-        @foreach($posts as $post)
-            <a class="blog-box" href="/post/{{$post->id}}">
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="blog-image-container">
-                            {{--<iframe width="420" height="315"
-                                    src="https://www.youtube.com/embed/tgbNymZ7vqY">
-                            </iframe>--}}
-                            <img class="card-img-top blog-image" src="{{$post->image}}" alt="Card image cap">
+        <div class="relative max-w-7xl mx-auto">
+            <div class="text-center">
+                <h2 class="text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl">
+                    Eat more mushroom!
+                </h2>
+                <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
+                    ...and feel better
+                </p>
+            </div>
+
+
+            <div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none relative z-10">
+                @foreach($posts as $post)
+                <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
+                    <div class="flex-shrink-0">
+                        <img class="h-48 w-full object-cover" src="{{$post->image}}" alt="">
+                    </div>
+                    <div class="flex-1 bg-white p-6 flex flex-col justify-between">
+                        <div class="flex-1">
+
+                            <a href="/post/{{$post->id}}" class="block mt-2 hover:no-underline">
+                                <p class="text-xl font-semibold text-gray-900">
+                                    {{$post->title}}
+                                </p>
+                                <p class="mt-3 text-base text-gray-500">
+                                    {{$post->subtitle}}
+                                </p>
+                            </a>
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title">{{$post->title}}</h5>
-                            <p class="card-text pb-2">{{$post->subtitle}}</p>
-                            <p class="card-text pb-4"><small class="text-muted">Last updated: {{$post->created_at}}</small></p>
-                            <a class="btn btn-info" href="/post/{{$post->id}}">Read More</a>
-                        </div>
+
                     </div>
                 </div>
-            </a>
-        @endforeach
+                @endforeach
+            </div>
+        </div>
     </div>
 
     @include('inc.footer')
-
 @endsection

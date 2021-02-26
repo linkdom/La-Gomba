@@ -55,30 +55,38 @@
     </div>
 
 @else
-    <div class="hero-image fade-in">
-        @if($text->status === 1)
-            <div class="p-10 mobile-jumbo">
-                <div class="jumbotron">
-                    <h1 class="display-4">{{$text->title}}</h1>
-                    <hr class="my-4">
-                    <p>{{$text->subtitle}}</p>
-                </div>
-            </div>
-        @endif
-    </div>
-    <div class="m-10 text-center">
-        <div class="alert alert-primary" >
-            You have no items in the shopping cart yet. <br><br><br>
-            <a href="/products" class="btn btn-primary">See my products here</a>
+    <!-- This example requires Tailwind CSS v2.0+ -->
+    <div style="min-height: 55vh" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:mt-40">
+        <!-- We've used 3xl here, but feel free to try other max-widths based on your needs -->
+        <div class="max-w-3xl mx-auto">
+            <!-- This example requires Tailwind CSS v2.0+ -->
+                    <!-- This example requires Tailwind CSS v2.0+ -->
+                    <div class="bg-white shadow-lg sm:rounded-lg">
+                        <div class="px-4 py-5 sm:p-6">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                Empty shopping cart
+                            </h3>
+                            <div class="mt-2 max-w-xl text-sm text-gray-500">
+                                <p>
+                                    Your shopping cart is empty. Visit my pricing page to add mushrooms!
+                                </p>
+                            </div>
+                            <div class="mt-5 ">
+                                <a style="width: 200px !important;" href="/products" class="hover:no-underline inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm">
+                                    Go to pricing page
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
         </div>
     </div>
+
+
 
 @endif
 
 
-<div style="position: absolute; width: 100%; bottom: 0;">
-
     @include('inc.footer')
-</div>
 
 @endsection

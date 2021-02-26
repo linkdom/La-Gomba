@@ -41,7 +41,7 @@
                                 </div>
 
                                 <div style="display: inline-block; padding-left: 20px">
-                                    <span><a href="https://www.sandbox.paypal.com/activity/payment/{{$order->order_id}}">{{$order->order_id}}</a></span>
+                                    <span><a href="https://www.paypal.com/activity/payment/{{$order->order_id}}">{{$order->order_id}}</a></span>
                                     <br>
                                     <span>{{date( "d.m.Y H:i:s", strtotime( $order->created_at ) )}}</span>
                                     <br>

@@ -167,6 +167,12 @@ Route::delete('/admin/posts/delete/{id}', [
     'as' => 'admin.blog.delete'
 ]);
 
+Route::post('/posts/dropzone/{blog}', '\App\Http\Controllers\ImageController@dropzoneStore')->name('dropzone.store');
+Route::post('/posts/delete_image', '\App\Http\Controllers\AdminBlogController@destroyImage')->name('posts.destroyImage');
+Route::post('/posts/add_image_text', '\App\Http\Controllers\AdminBlogController@addImageText')->name('posts.addImageText');
+Route::post('/posts/embed/{blog}', '\App\Http\Controllers\AdminBlogController@addEmbed')->name('posts.embed');
+Route::post('/posts/delete_embed', '\App\Http\Controllers\AdminBlogController@destroyEmbed')->name('posts.destroyEmbed');
+
 // ADMIN HARVESTING PERIODS
 Route::get('/admin/harvesting-periods', [
     'uses' => 'App\Http\Controllers\AdminHarvestingPeriodsController@index',

@@ -11,4 +11,11 @@ class Blog extends Model
 
     protected $fillable = ['title', 'subtitle', 'paragraph', 'image'];
 
+    public function images() {
+        return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function embeds() {
+        return $this->morphMany(Embed::class, 'embedable');
+    }
 }

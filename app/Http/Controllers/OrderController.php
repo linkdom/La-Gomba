@@ -13,12 +13,12 @@ use PayPal\Api\Details;
 use PayPal\Api\Item;
 use PayPal\Api\ItemList;
 use PayPal\Api\Payer;
-use PayPal\Api\PayerInfo;
 use PayPal\Api\Payment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\ShippingAddress;
 use PayPal\Api\Transaction;
+use PayPalCheckoutSdk\Core\ProductionEnvironment;
 
 class OrderController extends Controller
 {
@@ -102,10 +102,22 @@ class OrderController extends Controller
             ->setRedirectUrls($redirectUrls)
             ->setTransactions(array($transaction));
 
+        $clientId = 'AbL9VKFooIswflxO3FY7iZ1n2KtdzQ_w22f96V2DGdtYCtkS6oFTMi_jYqdIjdLfeRhMHBC6rdiEr_vL';
+        $clientSecret = 'EIX5g8EZbLx_tIGGw0sMatTLoScmYTktYTjTQJk6yat4p59qtHLXZoI5WDDq7Ic8maOlcIlyYDnlj9uT';
+
         $apiContext = new \PayPal\Rest\ApiContext(
             new \PayPal\Auth\OAuthTokenCredential(
-                'AbL9VKFooIswflxO3FY7iZ1n2KtdzQ_w22f96V2DGdtYCtkS6oFTMi_jYqdIjdLfeRhMHBC6rdiEr_vL',     // ClientID
-                'EIX5g8EZbLx_tIGGw0sMatTLoScmYTktYTjTQJk6yat4p59qtHLXZoI5WDDq7Ic8maOlcIlyYDnlj9uT'      // ClientSecret
+                $clientId,
+                $clientSecret
+            )
+        );
+
+        $apiContext->setConfig(
+            array(
+                'log.LogEnabled' => true,
+                'log.FileName' => 'PayPal.log',
+                'log.LogLevel' => 'DEBUG',
+                'mode' => 'live'
             )
         );
 
@@ -147,6 +159,15 @@ class OrderController extends Controller
             )
         );
 
+        $apiContext->setConfig(
+            array(
+                'log.LogEnabled' => true,
+                'log.FileName' => 'PayPal.log',
+                'log.LogLevel' => 'DEBUG',
+                'mode' => 'live'
+            )
+        );
+
         $paymentId = request('paymentId');
         $payment = Payment::get($paymentId, $apiContext);
 
@@ -185,8 +206,11 @@ class OrderController extends Controller
         $order->order_id = $id;
         $order->save();
 
+        $userId = Auth::id();
 
-        return view('dashboard')->with(['message' => 'Order successful.']);
+        $userOrders = Order::where('user_id', $userId)->orderByDesc('created_at')->get();
+        $orders = Order::orderBy('created_at', 'desc')->get();
+        return view('dashboard')->with(['message' => 'Order successful.','userOrders' => $userOrders, 'orders' => $orders]);
 
     }
 }

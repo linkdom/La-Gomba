@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item @if(Request::is('products')) active @endif">
-                    <a class="nav-link" href="/products">Products </a>
+                    <a class="nav-link" href="/products">Pricing </a>
                 </li>
                 <li class="nav-item @if(Request::is('blog')) active @endif">
                     <a class="nav-link" href="/blog">About </a>
@@ -48,7 +48,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item @if(Request::is('products') or Request::is('mushroom-details')) active @endif">
-                    <a class="nav-link" href="/products">Products <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/products">Pricing <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item @if(Request::is('blog')) active @endif">
                     <a class="nav-link" href="/blog">About </a>

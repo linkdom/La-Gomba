@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Embed;
+use App\Models\Image;
 use Illuminate\Http\Request;
 
 class AdminBlogController extends Controller
@@ -180,4 +182,44 @@ class AdminBlogController extends Controller
             abort(404);
         }
     }
+
+    public function addImage(Blog $blog, $data)
+    {
+        $blog->images()->create($data);
+    }
+
+    public function addImageText()
+    {
+        $image = Image::where('id', request()->get('image'))->first();
+        $image->text = \request()->get('text');
+        $image->save();
+
+        return redirect()->back()->with('success', 'Image description added successfully!');
+    }
+
+    public function destroyImage()
+    {
+        Image::destroy(request()->get('image'));
+
+        return redirect()->back()->with('success', 'Image deleted successfully!');
+    }
+
+    public function addEmbed(Blog $blog)
+    {
+        $data = request()->validate([
+            'url' => 'required'
+        ]);
+
+        $blog->embeds()->create($data);
+        return redirect()->back()->with('success', 'Link added Successfully!');
+    }
+
+    public function destroyEmbed()
+    {
+        Embed::destroy(request()->get('embed'));
+
+        return redirect()->back()->with('success', 'Embed Link deleted successfully!');
+    }
+
+
 }
